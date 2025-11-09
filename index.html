@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Motivos para sair comigo</title>
+  <title>"Motivos para sair comigo hoje"</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
@@ -80,6 +80,23 @@
       background-color: darkred;
     }
 
+    /* Indicativo "toque na tela" */
+    .tap-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1em;
+      color: #555;
+      animation: blink 1.2s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
     @media (max-width: 600px) {
       .text {
         font-size: 1.2em;
@@ -89,6 +106,11 @@
         font-size: 0.9em;
         padding: 8px 16px;
       }
+
+      .tap-hint {
+        font-size: 0.9em;
+        bottom: 25px;
+      }
     }
   </style>
 </head>
@@ -96,9 +118,10 @@
 
   <div class="slide active">
     <div class="text">
-      <strong>MOTIVOS</strong> para você aceitar <strong>SAIR COMIGO</strong>
+      <strong>MOTIVOS</strong> para você aceitar <strong>SAIR COMIGO HOJE</strong>
     </div>
     <img src="img1.png" alt="Motivo 1">
+    <div class="tap-hint">👆 Toque na tela</div>
   </div>
 
   <div class="slide">
@@ -140,7 +163,7 @@
     let transitioning = false;
 
     function nextSlide() {
-      if (transitioning || current === slides.length - 1) return;
+      if (transitioning || current >= slides.length - 1) return;
       transitioning = true;
       slides[current].classList.remove('active');
       current = (current + 1) % slides.length;
@@ -161,3 +184,4 @@
 
 </body>
 </html>
+
